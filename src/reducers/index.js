@@ -1,3 +1,4 @@
+import Axios from "axios";
 import { act } from "react-dom/test-utils";
 import {FETCH_START, FETCH_SUCCESS, FETCH_FAIL, NEW_SMURF, ERROR_VALUE } from './../actions'
     
@@ -34,7 +35,7 @@ export const reducer = (state = initialState, action) => {
         case NEW_SMURF:
            return({
                ...state,
-               smurfs: action.payload,
+               smurfs: [...state.smurfs, action.payload],
                loading: false
            })
         break;

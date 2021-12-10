@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Provider from 'react-redux/lib/components/Provider';
 
 
     export const FETCH_START = 'FETCH_START'
@@ -26,15 +25,26 @@ export const fetchSmurfs = () => {
     }
 }
 
-export const newSmurf = (smurf) => {
-    axios.post('http://localhost:3333/smurfs', smurf)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+export const addSmurf = (name, position, nickname, description) => {
+    const obj = {name, position, nickname, description}
+    return{type:NEW_SMURF, payload: obj}
+   
+   
+   //I kept getting long "undefined type" error when I used the post below. Do you need a thunk action to use those?
+   
+   
+    // axios.post('http://localhost:3333/smurfs', {name, position, nickname, description, id: Date.now()} )
+    //     .then(res => {
+    //        return({type:NEW_SMURF, payload:res.data});
+    //     })
+    //     .catch(err => {
+    //         return({type:ERROR_VALUE});
+    //     })
         
+}
+
+export const setError = (err) => {
+    return({type:ERROR_VALUE, payload: err})
 }
 
 //Task List:
