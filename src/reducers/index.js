@@ -1,8 +1,55 @@
+import { act } from "react-dom/test-utils";
+import {FETCH_START, FETCH_SUCCESS, FETCH_FAIL, NEW_SMURF, ERROR_VALUE } from './../actions'
+    
 
 export const initialState = {
+    smurfs: [],
+    loading: false,
+    error: ''
 }
 
-const reducer = ()=>{
+export const reducer = (state = initialState, action) => {
+
+    switch(action.type){
+        case FETCH_START:
+            return({
+                ...state,
+                loading: true
+            })
+        break;
+        case FETCH_SUCCESS: 
+           return({
+               ...state,
+               smurfs: action.payload,
+               loading: false
+           })
+        break;
+        case FETCH_FAIL:
+            return({
+                ...state,
+                error: action.payload,
+                loading: false
+            })
+        break;
+        case NEW_SMURF:
+           return({
+               ...state,
+               smurfs: action.payload,
+               loading: false
+           })
+        break;
+        case ERROR_VALUE:
+            return({
+                ...state,
+                error: action.payload,
+                loading: false
+            })
+        break;
+        default:
+            return state
+        
+    }
+
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
